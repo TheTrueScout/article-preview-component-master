@@ -1,0 +1,247 @@
+html {
+  font-size: 16px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+:root {
+
+  --very-dark-greyish-blue: hsl(217, 19%, 35%);
+  --desaturated-dark-blue: hsl(214, 17%, 51%);
+  --greyish-blue: hsl(212, 23%, 69%);
+  --light-greyish-blue: hsl(210, 46%, 95%);
+
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url(font/Manrope-VariableFont_wght.ttf) format('truetype');
+  font-weight: 200-800;
+}
+
+/* main */
+
+body {
+  background-color: var(--light-greyish-blue);
+  font-family: 'Manrope';
+}
+
+main {
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--very-dark-greyish-blue);
+}
+
+p {
+  font-size: 0.813rem;
+  font-weight: 500;
+  color: var(--desaturated-dark-blue);
+}
+
+.container {
+  background-color: white;
+  border: none;
+  border-radius: 0.5rem;
+  
+  max-width: 22.625rem;
+
+  .container__header-img {
+    width: 100%;
+    max-height: 12rem;
+    object-fit: cover;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+}
+
+.container__content {
+  padding: 2rem  1.5rem 1rem 1.5rem;
+
+    h1 {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 2rem;
+    }
+}
+
+.container__content__author-share {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; /* remove on desktop media query */
+  
+
+    .container__content__author-share__left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-img {
+      width:  2.5rem;
+      height: 2.5rem;
+      border-radius: 100rem;
+    }
+
+    .author-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--very-dark-greyish-blue);
+    }
+
+    .date {
+      font-size: 0.8rem;
+      color: var(--greyish-blue);
+    }
+
+    .share-button {
+      width:  2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 100rem;
+      background-color: var(--light-greyish-blue);
+      transition: 0.4s;
+      cursor: pointer;
+      z-index: 6;
+
+      
+    }
+}
+
+
+/* Overlay styles */
+
+.mobile-share-overlay {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  position: absolute;
+  width: 118.5%;
+  height: 180%;
+  border-radius: 0 0 0.5rem 0.5rem;
+  padding: 1.5rem;
+  margin: -1rem -1.5rem;
+  background-color: var(--very-dark-greyish-blue);
+  opacity: 0;
+  transition: 0.4s;
+  transform: translateY(100%);
+   a {
+    pointer-events: none;
+   }
+}
+
+.share-overlay__share {
+  font-size: 0.8rem;
+  color: var(--light-greyish-blue);
+  letter-spacing: 0.5rem;
+}
+
+.desktop-share-overlay {
+  display: none;
+  align-items: center;
+  gap: 0.7rem;
+  position: absolute;
+  background-color: var(--very-dark-greyish-blue);
+  right: -5.8rem;
+  top: -3.5rem;
+  padding: 0.7rem 1.3rem;
+  border-radius: 0.6rem;
+  transition: 0.4s;
+  transform: translateY(-1rem);
+  opacity: 0;
+
+  a {
+    pointer-events: none;
+  }
+}
+
+.desktop-share-overlay::after {
+  content: '';
+  position: absolute;
+  bottom: -0.7rem; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  width: 0;
+  height: 0;
+  border-left: 1rem solid transparent;
+  border-right: 1rem solid transparent;
+  border-top: 1rem solid var(--very-dark-greyish-blue);
+}
+
+
+/* Active and hover effects/classes */
+
+.share-button:hover {
+  background-color: hsl(213, 8%, 79%);
+}
+
+.mobile-overlay-transition {
+  transform: translateY(0);
+  opacity: 1;
+  a {
+    pointer-events: all;
+  }
+}
+
+.desktop-overlay-transition {
+  transform: translateY(0);
+  opacity: 1;
+
+  a {
+    pointer-events: all;
+  }
+}
+
+
+
+
+/* footer  */
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+
+@media screen and (min-width: 48rem) {
+  main {
+    height: 95vh;
+    align-items: center;
+    padding: 0;
+  }
+
+  .mobile-share-overlay {
+    display: none;
+  }
+  .desktop-share-overlay {
+    display: flex;
+  }
+
+  .container {
+    display: flex;
+    max-width: 39rem;
+
+    .container__header-img {
+      max-width: 17rem;
+      max-height: 17rem;
+      border-radius: 0.5rem 0 0 0.5rem;
+    }
+  }
+}
